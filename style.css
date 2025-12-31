@@ -1,101 +1,134 @@
+:root {
+  --green: #6fb18a;
+  --yellow: #f5d94c;
+  --dark: #1e1e1e;
+  --bg: #f6f6f6;
+  --header-bg: #1e1e1e;
+  --header-color: #fff;
+}
+
+/* Reset */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
+/* Body */
 body {
-    overflow: hidden;
-    background: #87ceeb;
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0;
 }
 
-/* Sky */
-.sky {
-    width: 100%;
-    height: 60vh;
-    background: linear-gradient(#87ceeb, #e0f6ff);
+/* Header */
+header {
+  text-align: center;
+  background: var(--header-bg);
+  color: var(--header-color);
+  width: 100%;
+  padding: 40px 20px;
+  margin-bottom: 30px;
+  border-radius: 10px;
 }
 
-/* Road */
-.road {
-    width: 200%;
-    height: 200px;
-    background: #333;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    animation: roadMove 2s linear infinite;
+header h1 {
+  font-size: 36px;
+  margin-bottom: 10px;
 }
 
-/* Lane markings */
-.lane {
-    position: absolute;
-    top: 50%;
-    width: 100%;
-    height: 10px;
-    background: repeating-linear-gradient(
-        to right,
-        #fff 0 50px,
-        transparent 50px 100px
-    );
+header p {
+  font-size: 18px;
 }
 
-/* Car */
-.car {
-    position: absolute;
-    bottom: 120px;
-    left: 50%;
-    transform: translateX(-50%);
+/* Grid container */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  width: 90%;
+  max-width: 1000px;
+
+  /* Sticky */
+  position: sticky;
+  top: 20px;
+  z-index: 5;
 }
 
-.car img {
-    width: 350px;
-    animation: carBounce 1s infinite alternate;
+/* Card base */
+.card {
+  padding: 28px;
+  border-radius: 22px;
+  position: relative;
+  color: var(--dark);
+  opacity: 0;
+  transform: translateY(40px);
+  animation: cardIn 0.8s ease forwards;
+  transition: transform 0.3s ease;
 }
 
-/* Wheels */
-.wheel {
-    width: 55px;
-    height: 55px;
-    background: black;
-    border-radius: 50%;
-    position: absolute;
-    bottom: 20px;
-    animation: wheelRotate 0.6s linear infinite;
+/* Stagger animation */
+.card:nth-child(1) { animation-delay: 0.1s; }
+.card:nth-child(2) { animation-delay: 0.3s; }
+.card:nth-child(3) { animation-delay: 0.5s; }
+
+/* Colors */
+.green { background: var(--green); }
+.yellow { background: var(--yellow); }
+
+/* Text styles */
+.badge {
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 1.1;
+  margin-bottom: 14px;
 }
 
-.wheel1 {
-    left: 65px;
+.title {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 10px;
 }
 
-.wheel2 {
-    right: 65px;
+.text {
+  font-size: 15px;
+  line-height: 1.5;
 }
 
-/* Animations */
-@keyframes roadMove {
-    from {
-        transform: translateX(0);
-    }
-    to {
-        transform: translateX(-50%);
-    }
+/* Illustration placeholder */
+.illustration {
+  position: absolute;
+  bottom: 18px;
+  right: 18px;
+  font-size: 42px;
+  opacity: 0.8;
 }
 
-@keyframes wheelRotate {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
+/* Hover animation */
+.card:hover {
+  transform: translateY(-10px) scale(1.02);
 }
 
-@keyframes carBounce {
-    from {
-        transform: translateY(0);
-    }
-    to {
-        transform: translateY(3px);
-    }
+/* Keyframes */
+@keyframes cardIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
+
+/* Extra scrollable content */
+.extra-content {
+  width: 90%;
+  max-width: 800px;
+  margin-top: 400px; /* creates enough scroll space */
+  padding: 20px;
+  line-height: 1.6;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
